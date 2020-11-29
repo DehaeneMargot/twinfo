@@ -1,23 +1,35 @@
 const init = function(){
 
-    //document.querySelector(".c-refresh__holder").addEventListener("click", function(){
-        // document.querySelector(".c-refresh__holder").style.transform = "rotate(30deg)"
-        //document.querySelector(".c-refresh__holder").style.animation = "infinite-spinning 1s"
-        //chart.data.datasets[0].data = [];
-        //chart.data.labels = [];
-        //chart.update();
-        
-        //setTimeout(function () {
-            //document.querySelector(".c-refresh__holder").style.animation = ""
-            //getNumbers(showData);
-            // document.querySelector(".c-refresh__holder").style.transform = ""
-        //}, 1000);
-        
-    //})
+    document.querySelector(".js-refresh").addEventListener("click", function(){
+        document.querySelector(".js-refresh").style.animation = "refresh 1s"
 
-   
-    console.log("😍 Works")
-    //initCharts();
+        setTimeout(function () {
+            document.querySelector(".js-refresh").style.animation = ""
+            getStreams();
+            getLiveChannels();
+            getCategories();
+        }, 1000);
+    })
+
+    document.querySelector(".js-darkmodebutton").addEventListener("click", function(){
+        setTimeout(function(){
+            document.getElementById("js-darkmode").classList.add('c-dark');
+            document.getElementById("js-lightmodeicon").classList.add('o-hide-accessible');
+            document.getElementById('js-darkmodeicon').classList.remove('o-hide-accessible');
+        }, 500);
+        
+    })
+
+    document.querySelector(".js-lightmodebutton").addEventListener("click", function(){
+        setTimeout(function(){
+            document.getElementById('js-darkmode').classList.remove('c-dark');
+            document.getElementById('js-darkmodeicon').classList.add('o-hide-accessible');
+            document.getElementById('js-lightmodeicon').classList.remove('o-hide-accessible');
+
+        }, 500);
+
+    })
+
     getStreams();
     getLiveChannels();
     getCategories();
@@ -128,17 +140,8 @@ const getCategories = function() {
 }
 
 const getDOMElements = function () {
-    html_userName = document.querySelector(".js-username");
-
     html_liveViewers = document.querySelector(".js-liveviewers");
     html_liveChannels = document.querySelector(".js-livechannels");
-    html_gameName = document.querySelector(".js-gamename");
-    html_gameName2 = document.querySelector(".js-gamename2");
-    html_gameName3 = document.querySelector(".js-gamename3");
-    html_image = document.querySelector(".js-image");
-    html_image2 = document.querySelector(".js-image2");
-    html_image3 = document.querySelector(".js-image2");
-
 };
 
 document.addEventListener("DOMContentLoaded", () => {
