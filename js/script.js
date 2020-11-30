@@ -1,5 +1,4 @@
 const init = function(){
-
     document.querySelector(".js-refresh").addEventListener("click", function(){
         document.querySelector(".js-refresh").style.animation = "refresh 1s"
 
@@ -32,12 +31,102 @@ const init = function(){
         }, 500);
 
     })
+
+    document.querySelector(".js-searchicon").addEventListener("click", function(){ 
+        const table = document.querySelector(".js-searchbar");
+        let tableHTML = ``
+        tableHTML += `
+        <div class="c-search">
+            <input class="c-searchbar" id="searchbar" type="text" placeholder="Search channel..">
+            <button class="c-searchbutton js-searchbutton">Search</button>
+            <button class="c-searchbutton js-returnbutton">Return</button>
+        </div>
+        <div class="js-searchresults"></div>
+
+        `
+        table.innerHTML = tableHTML;   
+        
+        document.querySelector(".js-searchbutton").addEventListener("click", function(){ 
+            let input = document.getElementById('searchbar').value 
+            input = input.toLowerCase(); 
+            getSearchResults(input);
+        })
+
+        document.querySelector(".js-returnbutton").addEventListener("click", function(){ 
+            const table = document.querySelector(".js-searchbar");
+            let tableHTML = ``
+            tableHTML += ``
+            table.innerHTML = tableHTML;   
+        })
+    })
     
     getStreams();
     getLiveChannels();
     getCategories();
     
 };
+
+const getSearchResults = async function(input) {
+    const table = document.querySelector(".js-searchresults");
+    let tableHTML = ``
+    fetch(`https://api.twitch.tv/helix/search/channels?query=${input}`, {headers: {'Client-Id': 'ax1wpua2jp4np4p8azvnn9zhqg2mxy', 'Authorization': 'Bearer t8c1v6qcbh8aym9s6s73pv3o1byqy1'}})
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        resultData = data["data"]
+        channelResult = resultData[0];
+        userName = channelResult["display_name"];
+        image = channelResult["thumbnail_url"];
+        gameId = channelResult["game_id"];
+        userId = channelResult["id"];
+
+        fetch(`https://api.twitch.tv/helix/streams?user_id=${userId}`, {headers: {'Client-Id': 'ax1wpua2jp4np4p8azvnn9zhqg2mxy', 'Authorization': 'Bearer t8c1v6qcbh8aym9s6s73pv3o1byqy1', 'Accept': 'application/vnd.twitchtv.v5+json'}})
+        .then(res => res.json())
+        .then(extraData => {
+            console.log(extraData)
+            liveChannelData = extraData["data"];
+            isLiveBool = channelResult["is_live"];
+            liveChannelData = liveChannelData[0];
+            if (isLiveBool == true){
+                gameName = liveChannelData["game_name"]
+                viewers = liveChannelData["viewer_count"]
+            }
+            else {
+                gameName = ""
+                viewers = 0
+            }
+            if (isLiveBool == true){
+                isLive = `Now streaming ${gameName}`
+            }
+            else{
+                isLive = "Now offline"
+            }
+            tableHTML += `
+            <div class="c-card">
+                <div class="c-cardview">
+                    <div class="c-cardview__image-container">
+                        <img class="c-cardview__image" src="${image}" alt="Channel Image">
+                    </div>
+                    <div>
+                        <h3>
+                            ${userName}
+                        </h3>
+                        <h5>
+                            ${isLive} 
+                        </h5>
+                    </div>
+                    <div>
+                        <h4>
+                            ${viewers} viewers
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            `
+            table.innerHTML = tableHTML; 
+        })
+    }); 
+}
 
 
 const getLiveChannels = function(){
