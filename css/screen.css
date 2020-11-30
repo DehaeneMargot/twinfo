@@ -510,29 +510,16 @@ input::placeholder {
   font-size: 16px;
 }
 
-.c-nav__link {
+.c-nav__icon-container {
   text-decoration: none;
   font-weight: 400;
   display: block;
   padding: 8px 0;
 }
 
-.c-nav__link,
-.c-nav__link:visited,
-.c-nav__link:active {
-  color: #202024;
-}
-
-.c-nav__link--meta,
-.c-nav__link--meta:visited,
-.c-nav__link--meta:active {
-  color: #6c6c75;
-}
-
-.is-selected .c-nav__link,
-.c-nav__link:hover,
-.c-nav__link:focus {
-  color: #5051db;
+.c-nav__icon:hover,
+.c-nav__icon:focus {
+  fill: var(--color-alpha);
 }
 
 .c-nav__list {
@@ -541,7 +528,7 @@ input::placeholder {
   margin-right: -16px;
 }
 
-.c-nav__link {
+.c-nav__icon-container {
   padding: 8px 10px;
 }
 
