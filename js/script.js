@@ -16,6 +16,8 @@ const init = function(){
             document.getElementById("js-darkmode").classList.add('c-dark');
             document.getElementById("js-lightmodeicon").classList.add('o-hide-accessible');
             document.getElementById('js-darkmodeicon').classList.remove('o-hide-accessible');
+            document.getElementById("js-lightmodelogo").classList.add('o-hide-accessible');
+            document.getElementById('js-darkmodelogo').classList.remove('o-hide-accessible');
         }, 500);
         
     })
@@ -25,15 +27,18 @@ const init = function(){
             document.getElementById('js-darkmode').classList.remove('c-dark');
             document.getElementById('js-darkmodeicon').classList.add('o-hide-accessible');
             document.getElementById('js-lightmodeicon').classList.remove('o-hide-accessible');
-
+            document.getElementById('js-darkmodelogo').classList.add('o-hide-accessible');
+            document.getElementById("js-lightmodelogo").classList.remove('o-hide-accessible');
         }, 500);
 
     })
-
+    
     getStreams();
     getLiveChannels();
     getCategories();
+    
 };
+
 
 const getLiveChannels = function(){
     fetch("https://api.twitch.tv/kraken/streams/summary", {headers: {'Client-Id': 'ax1wpua2jp4np4p8azvnn9zhqg2mxy', 'Authorization': 'Bearer t8c1v6qcbh8aym9s6s73pv3o1byqy1', 'Accept': 'application/vnd.twitchtv.v5+json'}})
@@ -43,7 +48,7 @@ const getLiveChannels = function(){
         liveViewers = data["viewers"]
         liveChannels = data["channels"]
         html_liveViewers.innerHTML = liveViewers;
-        html_liveChannels.innerHTML = liveChannels
+        html_liveChannels.innerHTML = liveChannels;
     });    
 }
 
