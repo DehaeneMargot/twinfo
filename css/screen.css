@@ -34,6 +34,8 @@
   --color-purple: #a3a0fb;
   --color-cyan: #54d8ff;
 
+  --element-gap: 2rem;
+
   /* Shadows */
 
   /* Whitespace */
@@ -46,6 +48,8 @@
   --global-whitespace-xl: calc(var(--global-baseline) * 6); /* 30px */
 
   /* border radius */
+  --global-borderRadius: 3px;
+  --global-borderWidth: 1px;
 
   /* transitions */
   --transition-alpha: 0.1s;
@@ -53,11 +57,21 @@
   /* dark mode */
   --global-page-background-color: var(--color-neutral-xxx-light);
   --global-page-header-color: var(--color-neutral-xxxx-light);
-  --global-nav-icon-color: var(--color-purple-x-dark);
+  --global-nav-icon-color: var(--color-alpha-light);
   --global-page-card-color: var(--color-neutral-xxxx-light);
   --global-h1-h4-h5-color: var(--color-purple-x-dark);
   --global-h2-h3-color: var(--color-purple-x-light);
-  --global-searchbar-color: var(--color-neutral-xxxx-light)
+  --global-searchbar-color: var(--color-neutral-xxxx-light);
+
+  /* forms */
+  --global-placeholder-color: var(--color-neutral-x-light);
+  --global-input-backgroundColor: White;
+  --global-input-color: var(--color-neutral-xxxx-dark);
+  --global-input-borderColor: var(--color-neutral-xxx-light);
+  --global-input-hover-borderColor: var(--color-neutral-xx-light);
+  --global-input-focus-borderColor: var(--color-alpha);
+  --global-input-focus-boxShadowColor: var(--color-alpha-x-transparent);
+  --global-input-focus-boxShadow: 0 0 0 3px var(--global-input-focus-boxShadowColor);
   
 
 }
@@ -71,6 +85,9 @@
     ---
     Global page styles + universal box-sizing:
 */
+body, html {
+  height: 100%;
+}
 
 html {
   font-size: 15px;
@@ -194,7 +211,15 @@ h5 {
   font-size: 14px;
   font-weight: 400;
   line-height: calc(var(--global-baseline) * 5);
-  margin: 0 0 var(--global-whitespace-md);
+  margin: 0;
+  color: var(--global-h1-h4-h5-color);
+}
+
+h6 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: calc(var(--global-baseline) * 5);
+  margin: 0;
   color: var(--global-h1-h4-h5-color);
 }
 
@@ -203,13 +228,14 @@ h5 {
   h3,
   h4 {
     font-size: 24px;
-    margin: 0 0 var(--global-whitespace-md);
+    margin: 0 0 var(--global-whitespace-sm);
   }
   h2 {
     font-size: 36px;
     margin: 0 0 var(--global-whitespace-lg)
   }
-  h5 {
+  h5,
+  h6 {
     font-size: 18px;
   }
 }
@@ -357,6 +383,13 @@ input::placeholder {
   max-width: 56.4em; /* 56.4 * 20px = 1128px */
 }
 
+.o-container-landing {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 100em; /* 56.4 * 20px = 1128px */
+}
+
 /*
     Objects: List
     ---
@@ -419,6 +452,115 @@ input::placeholder {
 \*------------------------------------*/
 
 /*
+    Component: Forms
+    ---
+    Forms
+*/
+
+.c-card-form {
+  background-color: white;
+  border-radius: 6px;
+  margin: 0 100px;
+  opacity: 0.75;
+  height: fit-content;
+}
+
+.c-form {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-gap: 2rem;
+  grid-template-rows: 15vh 1fr 1fr
+}
+
+.c-form__logo {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+@media (min-width: 768px) {
+  .c-form__logo {
+    height: 100%;
+  }
+}
+
+.c-form__text {
+  font-size: 1.5rem;
+  color: var(--color-neutral-xxxx-dark);
+  padding: 0 1rem;
+}
+
+/*
+    Component: Input
+    ---
+    Class to put on all input="text" like form inputs
+*/
+
+.c-input {       
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  border: 1px solid var(--global-input-borderColor);
+  border-radius: var(--global-borderRadius);
+  background-color: var(--global-input-backgroundColor);
+  color: var(--global-input-color);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: calc(var(--global-baseline) * 3);
+  padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-md);
+  outline: none;
+  transition: border var(--global-transition-timing-alpha), box-shadow var(--global-transition-timing-alpha);
+}
+
+.c-input:hover {
+  border-color: var(--global-input-hover-borderColor);
+}
+
+.c-input:focus,
+.c-input:active {
+  border-color: var(--global-input-focus-borderColor);
+  box-shadow: var(--global-input-focus-boxShadow);
+}
+
+/*
+    Component: Label
+    ---
+    Class to put on all form labels
+*/
+
+.c-label {
+  --label-color: var(--global-color-neutral-xx-dark);
+  margin-bottom: 0;
+  padding-bottom: var(--global-whitespace-sm);
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--label-color);
+}
+
+.c-label--option {
+  padding-bottom: 0;
+}
+
+
+/*
+    Component: Landingspage background
+    ---
+    Background
+*/
+
+.c-background {
+  background-size: cover;
+  height: 100vh;
+  background-image: url("../img/jpg/streamer.jpg");
+  opacity: 0.75;
+  resize: none;
+}
+
+/*
     Component: App
     ---
     Website main app
@@ -426,6 +568,15 @@ input::placeholder {
 
 .c-app {
   --c-app__topbar-height: calc(var(--global-baseline) * 14);
+  min-height: 100vh;
+}
+
+.c-app-landing {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-self: center;
+  align-items: center;
   min-height: 100vh;
 }
 
@@ -521,7 +672,7 @@ input::placeholder {
 
 .c-nav__icon:hover,
 .c-nav__icon:focus {
-  fill: var(--color-alpha);
+  fill: var(--color-purple-x-dark);
 }
 
 .c-nav__list {
@@ -572,17 +723,14 @@ input::placeholder {
   width: 100%;
   background-color: var(--global-page-card-color);
   padding: 1rem;
-  height: 144px;
   box-shadow: 0 2px 6px -6px var(--color-neutral-xxxx-dark);
   border-radius: 10px;
   margin-bottom: 14px;
   align-items: center;
-  max-height: 156px;
 }
 
 .c-cardview {
   width: 100%;
-  height: 118px;
   margin: 0 auto;
   display: grid;
   grid-gap: 1rem;
@@ -624,7 +772,7 @@ input::placeholder {
     Refresh icon
 */
 
-@-webkit-keyframes refresh /* Safari and Chrome */ {
+@-webkit-keyframes refresh {
   from {
     -webkit-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -650,12 +798,19 @@ input::placeholder {
     ---
     Searchbar
 */
+.has-search-bar .c-search {
+  transform: translateX(0%);
+  margin-bottom: 20px;
+}
 
 .c-search {
   display: grid;
   grid-gap: 0.5rem;
-  grid-template-columns: 55% 20% 20%;
-  margin-bottom: 20px;
+  grid-template-columns: 70% 25% 5%;
+  transform: translateY(-200%);
+  transition: transform .25s ease;
+  margin-bottom: -40px;
+  align-items: center;
 }
 
 /* Style the search field */
@@ -666,8 +821,8 @@ input::placeholder {
   background: var(--global-searchbar-color);
   border: 1px solid var(--color-neutral-light);
   border-radius: 4px;
+  box-shadow: 0 2px 6px -6px var(--color-neutral-xxxx-dark);
 }
-
 
 
 /* Style the submit button */
@@ -682,6 +837,7 @@ input::placeholder {
   border-left: none; /* Prevent double borders */
   cursor: pointer;
   border-radius: 4px;
+  box-shadow: 0 2px 6px -6px var(--color-neutral-xxxx-dark);
 }
 
 .c-searchbutton:hover {
@@ -690,7 +846,7 @@ input::placeholder {
 
 @media (min-width: 992px) {
   .c-search {
-    grid-template-columns: auto 100px 100px;
+    grid-template-columns: auto 100px 24px;
   }
 }
 

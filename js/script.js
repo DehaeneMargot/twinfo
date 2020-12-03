@@ -1,4 +1,6 @@
 const init = function(){
+    toggleSearch();
+
     document.querySelector(".js-refresh").addEventListener("click", function(){
         document.querySelector(".js-refresh").style.animation = "refresh 1s"
 
@@ -32,39 +34,31 @@ const init = function(){
 
     })
 
-    document.querySelector(".js-searchicon").addEventListener("click", function(){ 
-        const table = document.querySelector(".js-searchbar");
-        let tableHTML = ``
-        tableHTML += `
-        <div class="c-search">
-            <input class="c-searchbar" id="searchbar" type="text" placeholder="Search channel..">
-            <button class="c-searchbutton js-searchbutton">Search</button>
-            <button class="c-searchbutton js-returnbutton">Return</button>
-        </div>
-        <div class="js-searchresults"></div>
+    getStreams();
+    getLiveChannels();
+    getCategories();   
+};
 
-        `
-        table.innerHTML = tableHTML;   
-        
-        document.querySelector(".js-searchbutton").addEventListener("click", function(){ 
+function toggleSearch() {
+    let toggleTrigger = document.querySelectorAll(".js-searchicon");
+    for (let i = 0; i < toggleTrigger.length; i++) {
+        toggleTrigger[i].addEventListener("click", function() {
+        document.querySelector("body").classList.toggle("has-search-bar");
+        })
+    }
+    document.querySelector(".js-searchbutton").addEventListener("click", function(){ 
             let input = document.getElementById('searchbar').value 
             input = input.toLowerCase(); 
             getSearchResults(input);
         })
-
-        document.querySelector(".js-returnbutton").addEventListener("click", function(){ 
-            const table = document.querySelector(".js-searchbar");
-            let tableHTML = ``
-            tableHTML += ``
-            table.innerHTML = tableHTML;   
-        })
+    
+    document.querySelector(".js-returnbutton").addEventListener("click", function(){ 
+        const table = document.querySelector(".js-searchresults");
+        document.querySelector("body").classList.remove("has-search-bar");
+        let tableHTML = ``
+        table.innerHTML = tableHTML; 
     })
-    
-    getStreams();
-    getLiveChannels();
-    getCategories();
-    
-};
+}
 
 const getSearchResults = async function(input) {
     const table = document.querySelector(".js-searchresults");
@@ -83,36 +77,37 @@ const getSearchResults = async function(input) {
         fetch(`https://api.twitch.tv/helix/streams?user_id=${userId}`, {headers: {'Client-Id': 'ax1wpua2jp4np4p8azvnn9zhqg2mxy', 'Authorization': 'Bearer t8c1v6qcbh8aym9s6s73pv3o1byqy1', 'Accept': 'application/vnd.twitchtv.v5+json'}})
         .then(res => res.json())
         .then(extraData => {
-            console.log(extraData)
+            console.log(extraData);
             liveChannelData = extraData["data"];
             isLiveBool = channelResult["is_live"];
             liveChannelData = liveChannelData[0];
             if (isLiveBool == true){
-                gameName = liveChannelData["game_name"]
-                viewers = liveChannelData["viewer_count"]
+                gameName = liveChannelData["game_name"];
+                viewers = liveChannelData["viewer_count"];
+                title = liveChannelData["title"];
+                isLive = `Now streaming ${gameName}`;
             }
             else {
-                gameName = ""
-                viewers = 0
-            }
-            if (isLiveBool == true){
-                isLive = `Now streaming ${gameName}`
-            }
-            else{
-                isLive = "Now offline"
+                gameName = "";
+                viewers = 0;
+                title = "";
+                isLive = "Now offline";
             }
             tableHTML += `
-            <div class="c-card">
+            <div class="c-card" id="js-cardresult">
                 <div class="c-cardview">
                     <div class="c-cardview__image-container">
                         <img class="c-cardview__image" src="${image}" alt="Channel Image">
                     </div>
                     <div>
-                        <h3>
+                        <h3  class="u-mb-clear">
                             ${userName}
                         </h3>
-                        <h5>
+                        <h6>
                             ${isLive} 
+                        </h6>
+                        <h5>
+                            ${title} 
                         </h5>
                     </div>
                     <div>
@@ -133,9 +128,9 @@ const getLiveChannels = function(){
     fetch("https://api.twitch.tv/kraken/streams/summary", {headers: {'Client-Id': 'ax1wpua2jp4np4p8azvnn9zhqg2mxy', 'Authorization': 'Bearer t8c1v6qcbh8aym9s6s73pv3o1byqy1', 'Accept': 'application/vnd.twitchtv.v5+json'}})
 	.then(res => res.json())
 	.then(data => {
-        console.log(data)
-        liveViewers = data["viewers"]
-        liveChannels = data["channels"]
+        console.log(data);
+        liveViewers = data["viewers"];
+        liveChannels = data["channels"];
         html_liveViewers.innerHTML = liveViewers;
         html_liveChannels.innerHTML = liveChannels;
     });    
@@ -145,14 +140,11 @@ const getTrendingChannels = function(streamsData){
     const table = document.querySelector(".js-trendingchannels");
     let tableHTML = ``
     for(i=0; i<3; i++){
-        channel = streamsData[i]["channel"]
+        channel = streamsData[i]["channel"];
         userName = channel["display_name"];
-        image = channel["logo"]
+        image = channel["logo"];
         gameName = streamsData[i]["game"];
         viewers = streamsData[i]["viewers"];
-        console.log(userName);
-        console.log(gameName);
-        console.log(image)
         tableHTML += `
         <div class="c-card">
             <div class="c-cardview">
@@ -163,9 +155,8 @@ const getTrendingChannels = function(streamsData){
                     <h3>
                         ${userName}
                     </h3>
-                    <h5>
-                        Playing: ${gameName}
-                    </h5>
+                    <p><h5>Playing</h5> 
+                    <h6>${gameName}</h6></p>
                 </div>
                 <div>
                     <h4>
@@ -183,12 +174,12 @@ const getTrendingCategories = function(categoriesData){
     const table = document.querySelector(".js-trendingcategories");
     let tableHTML = ``
     for(i=0; i<3; i++){
-        category = categoriesData[i]["game"]
+        category = categoriesData[i]["game"];
         categoryName = category["name"];
-        images = category["box"]
-        image = images["medium"]
+        images = category["box"];
+        image = images["medium"];
 
-        viewers = categoriesData[i]["viewers"]
+        viewers = categoriesData[i]["viewers"];
         tableHTML += `
         <div class="c-card">
             <div class="c-cardview">
