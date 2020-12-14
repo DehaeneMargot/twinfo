@@ -1,3 +1,6 @@
+let graph;
+let chart;
+
 const init = function(){
     toggleSearch();
 
@@ -203,6 +206,47 @@ const getTrendingCategories = function(categoriesData){
     table.innerHTML = tableHTML;
 };
 
+const showDataCategories = function(categoriesData) {
+    console.log("hi")
+    console.log(categoriesData)
+    let converted_labels = [];
+    let converted_data = [];
+    
+    for(i=0; i<10; i++) {
+        game = categoriesData[i]["game"]
+        converted_labels.push(game['name']);
+        converted_data.push(categoriesData[i]['viewers']);
+    }
+    drawChartCategories(converted_labels, converted_data) //x en y
+}
+
+const drawChartCategories = function (labels, data) {
+
+    var ctx = document.getElementById("chartCategories").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Categories',
+                data: data,
+                backgroundColor:'rgb(162, 0, 255)'
+            }]
+        },
+        options: {
+            legend: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        }
+    });
+}
+
 const getStreams = function(){
     fetch("https://api.twitch.tv/kraken/streams/", {headers: {'Client-Id': 'ax1wpua2jp4np4p8azvnn9zhqg2mxy', 'Authorization': 'Bearer t8c1v6qcbh8aym9s6s73pv3o1byqy1', 'Accept': 'application/vnd.twitchtv.v5+json'}})
 	.then(res => res.json())
@@ -221,6 +265,7 @@ const getCategories = function() {
 		console.log(data);
         categoriesData = data["top"];
         getTrendingCategories(categoriesData);
+        showDataCategories(categoriesData);
 	});
 }
 
