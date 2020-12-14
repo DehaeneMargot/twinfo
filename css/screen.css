@@ -10,7 +10,9 @@
   /* colors */
   --color-alpha-light: #a200ff;
   --color-alpha:#9000e2;
+  --color-alpha-transparent:#9000e24d;
 
+  --color-neutral-xxxx-light-transparent: #ffffffe6;
   --color-neutral-xxxx-light: #ffffff;
   --color-neutral-xxx-light: #f6f6f6;
   --color-neutral-xx-light: #ebebf2;
@@ -39,13 +41,13 @@
   /* Shadows */
 
   /* Whitespace */
-  --global-baseline: 5px;
-  --global-whitespace-xxs: var(--global-baseline); /* 5px */
-  --global-whitespace-xs: calc(var(--global-baseline) * 2); /* 10px */
-  --global-whitespace-sm: calc(var(--global-baseline) * 3); /* 15px */
-  --global-whitespace-md: calc(var(--global-baseline) * 4); /* 20px */
-  --global-whitespace-lg: calc(var(--global-baseline) * 5); /* 25px */
-  --global-whitespace-xl: calc(var(--global-baseline) * 6); /* 30px */
+  --global-baseline: 8px;
+  --global-whitespace-xxs: var(--global-baseline);
+  --global-whitespace-xs: calc(var(--global-baseline) * 2);
+  --global-whitespace-sm: calc(var(--global-baseline) * 3);
+  --global-whitespace-md: calc(var(--global-baseline) * 4);
+  --global-whitespace-lg: calc(var(--global-baseline) * 5);
+  --global-whitespace-xl: calc(var(--global-baseline) * 6);
 
   /* border radius */
   --global-borderRadius: 3px;
@@ -66,12 +68,13 @@
 
   /* forms */
   --global-placeholder-color: var(--color-neutral-x-light);
+  --global-landingCard-color: var(--color-neutral-xxxx-light-transparent);
   --global-input-backgroundColor: White;
   --global-input-color: var(--color-neutral-xxxx-dark);
   --global-input-borderColor: var(--color-neutral-xxx-light);
   --global-input-hover-borderColor: var(--color-neutral-xx-light);
   --global-input-focus-borderColor: var(--color-alpha);
-  --global-input-focus-boxShadowColor: var(--color-alpha-x-transparent);
+  --global-input-focus-boxShadowColor: var(--color-alpha-transparent);
   --global-input-focus-boxShadow: 0 0 0 3px var(--global-input-focus-boxShadowColor);
   
 
@@ -91,7 +94,7 @@ body, html {
 }
 
 html {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
   font-family: 'Source Sans Pro', Helvetica, arial, sans-serif;
   color: var(--color-neutral-dark);
@@ -181,21 +184,21 @@ h3 {
 
 h1 {
   font-size: 18px;
-  line-height: calc(var(--global-baseline) * 10);
+  line-height: calc(var(--global-baseline) * 4);
   margin: 0 0 var(--global-whitespace-sm);
   color: var(--global-h1-h4-h5-color);
 }
 
 h2 {
   font-size: 24px;
-  line-height: calc(var(--global-baseline) * 8);
+  line-height: calc(var(--global-baseline) * 5);
   margin: 0 0 var(--global-whitespace-sm);
   color: var(--global-h2-color);
 }
 
 h3 {
   font-size: 18px;
-  line-height: calc(var(--global-baseline) * 6);
+  line-height: calc(var(--global-baseline) * 4);
   margin: 0 0 var(--global-whitespace-sm);
   color: var(--global-h3-color);
 }
@@ -203,7 +206,7 @@ h3 {
 h4 {
   font-size: 18px;
   font-weight: 400;
-  line-height: calc(var(--global-baseline) * 5);
+  line-height: calc(var(--global-baseline) * 4);
   margin: 0 0 var(--global-whitespace-sm);
   color: var(--global-h1-h4-h5-color);
   text-align: right;
@@ -212,7 +215,7 @@ h4 {
 h5 {
   font-size: 14px;
   font-weight: 400;
-  line-height: calc(var(--global-baseline) * 5);
+  line-height: calc(var(--global-baseline) * 3);
   margin: 0;
   color: var(--global-h1-h4-h5-color);
 }
@@ -220,7 +223,7 @@ h5 {
 h6 {
   font-size: 14px;
   font-weight: 600;
-  line-height: calc(var(--global-baseline) * 5);
+  line-height: calc(var(--global-baseline) * 3);
   margin: 0;
   color: var(--global-h1-h4-h5-color);
 }
@@ -230,7 +233,7 @@ h6 {
   h3,
   h4 {
     font-size: 24px;
-    margin: 0 0 var(--global-whitespace-sm);
+    margin: 0 0 var(--global-whitespace-xs);
   }
   h2 {
     font-size: 36px;
@@ -460,18 +463,18 @@ input::placeholder {
 */
 
 .c-card-form {
-  background-color: white;
+  background-color: var(--global-landingCard-color);
   border-radius: 6px;
-  margin: 0 100px;
-  opacity: 0.75;
+  margin: 0;
   height: fit-content;
+  padding: 0px 16px;
 }
 
 .c-form {
   display: grid;
   grid-template-columns: 100%;
   grid-gap: 2rem;
-  grid-template-rows: 15vh 1fr 1fr
+  grid-template-rows: 15vh 0.5fr 0.75fr
 }
 
 .c-form__logo {
@@ -489,10 +492,23 @@ input::placeholder {
   }
 }
 
+@media (min-width: 1240px) {
+  .c-card-form {
+    margin: 0 100px;
+    padding: 0px 32px;
+  }
+
+  .c-form {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 2rem;
+    grid-template-rows: 15vh 1fr 1fr
+  }
+}
+
 .c-form__text {
   font-size: 1.5rem;
   color: var(--color-neutral-xxxx-dark);
-  padding: 0 1rem;
 }
 
 /*
@@ -508,12 +524,12 @@ input::placeholder {
   width: 100%;
   border: 1px solid var(--global-input-borderColor);
   border-radius: var(--global-borderRadius);
-  background-color: var(--global-input-backgroundColor);
+  background-color: var(--color-neutral-xxxx-light);
   color: var(--global-input-color);
   font-family: inherit;
   font-size: 16px;
   line-height: calc(var(--global-baseline) * 3);
-  padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-md);
+  padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-sm);
   outline: none;
   transition: border var(--global-transition-timing-alpha), box-shadow var(--global-transition-timing-alpha);
 }
@@ -558,7 +574,6 @@ input::placeholder {
   background-size: cover;
   height: 100vh;
   background-image: url("../img/jpg/streamer.jpg");
-  opacity: 0.75;
   resize: none;
 }
 
@@ -575,8 +590,7 @@ input::placeholder {
 
 .c-app-landing {
   padding: 2rem;
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
   justify-self: center;
   align-items: center;
   min-height: 100vh;
@@ -587,7 +601,20 @@ input::placeholder {
     display: grid;
     grid-template-rows: var(--c-app__topbar-height) 1fr;
   }
+  
 }
+
+@media (min-width: 1240px) {
+  .c-app-landing {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-self: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+}
+
 
 /*
     Component: Logo
@@ -818,6 +845,13 @@ input::placeholder {
   margin-bottom: 20px;
 }
 
+.c-search-landing {
+  width: 100%;
+  margin-top: 1.5em;
+  height: 48px;
+  font-weight: 600;
+}
+
 .c-search {
   display: grid;
   grid-gap: 0.5rem;
@@ -865,6 +899,19 @@ input::placeholder {
   }
 }
 
+.c-mockup {
+  display: none;
+}
+
+@media (min-width: 1240px) {
+  .c-mockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+    margin: 0 auto;
+  }
+}
 
 /*------------------------------------*\
 #UTILITIES
