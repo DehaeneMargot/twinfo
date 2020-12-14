@@ -60,7 +60,8 @@
   --global-nav-icon-color: var(--color-alpha-light);
   --global-page-card-color: var(--color-neutral-xxxx-light);
   --global-h1-h4-h5-color: var(--color-purple-x-dark);
-  --global-h2-h3-color: var(--color-purple-x-light);
+  --global-h2-color: var(--color-purple-x-light);
+  --global-h3-color: var(--color-purple-x-light);
   --global-searchbar-color: var(--color-neutral-xxxx-light);
 
   /* forms */
@@ -120,7 +121,8 @@ html {
   --global-nav-icon-color: var(--color-neutral-xxxx-light);
   --global-page-card-color: var(--color-neutral-xxx-dark);
   --global-h1-h4-h5-color: var(--color-neutral-xxxx-light);
-  --global-h2-h3-color: var(--color-neutral-xxxx-light);
+  --global-h2-color: var(--color-purple-x-light);
+  --global-h3-color: var(--color-neutral-xxxx-light);
   --global-searchbar-color: var(--color-neutral-xxx-dark)
 }
 
@@ -188,14 +190,14 @@ h2 {
   font-size: 24px;
   line-height: calc(var(--global-baseline) * 8);
   margin: 0 0 var(--global-whitespace-sm);
-  color: var(--global-h2-h3-color);
+  color: var(--global-h2-color);
 }
 
 h3 {
   font-size: 18px;
   line-height: calc(var(--global-baseline) * 6);
   margin: 0 0 var(--global-whitespace-sm);
-  color: var(--global-h2-h3-color);
+  color: var(--global-h3-color);
 }
 
 h4 {
@@ -687,7 +689,7 @@ input::placeholder {
 }
 
 .c-nav__icon:active,
-.c-nav__icon:focus {
+ {
   fill: var(--color-purple-x-dark);
 }
 .c-nav__list {
