@@ -76,8 +76,6 @@
   --global-input-focus-borderColor: var(--color-alpha);
   --global-input-focus-boxShadowColor: var(--color-alpha-transparent);
   --global-input-focus-boxShadow: 0 0 0 3px var(--global-input-focus-boxShadowColor);
-  
-
 }
 
 /*------------------------------------*\
@@ -467,7 +465,7 @@ input::placeholder {
   border-radius: 6px;
   margin: 0;
   height: fit-content;
-  padding: 0px 16px;
+  padding: 16px;
 }
 
 .c-form {
@@ -551,9 +549,9 @@ input::placeholder {
 */
 
 .c-label {
-  --label-color: var(--global-color-neutral-xx-dark);
+  --label-color: var(--color-purple-dark);
   margin-bottom: 0;
-  padding-bottom: var(--global-whitespace-sm);
+  padding-bottom: var(--global-whitespace-xxs);
   font-size: 14px;
   line-height: 16px;
   color: var(--label-color);
@@ -591,7 +589,7 @@ input::placeholder {
 .c-app-landing {
   padding: 2rem;
   display: flex;
-  justify-self: center;
+  justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
@@ -887,10 +885,18 @@ input::placeholder {
   cursor: pointer;
   border-radius: 4px;
   box-shadow: 0 2px 6px -6px var(--color-neutral-xxxx-dark);
+  outline: none;
 }
 
 .c-searchbutton:hover {
+  background: var(--color-purple-xx-light);
+}
+
+.c-searchbutton:active,
+.c-searchbutton:focus {
   background: var(--color-alpha);
+  border-color: var(--global-input-focus-borderColor);
+  box-shadow: var(--global-input-focus-boxShadow);
 }
 
 @media (min-width: 992px) {
@@ -898,6 +904,12 @@ input::placeholder {
     grid-template-columns: auto 100px 24px;
   }
 }
+
+/*
+    Component: Mockup
+    ---
+    iPhone Mockup
+*/
 
 .c-mockup {
   display: none;
