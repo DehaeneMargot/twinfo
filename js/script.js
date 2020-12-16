@@ -237,12 +237,27 @@ const drawChartCategories = function (labels, data) {
             legend: {
                 scales: {
                     yAxes: [{
+                        stacked: false,
+                        beginAtZero: true,
                         ticks: {
-                            beginAtZero:true
+                            autoSkip: false
+                        }
+                    }],
+                    xAxes: [{
+                        stacked: false,
+                        beginAtZero: true,
+                        scaleLabel: {
+                            labelString: 'Month'
+                        },
+                        ticks: {
+                            stepSize: 1,
+                            min: 0,
+                            autoSkip: false
                         }
                     }]
                 }
-            }
+            },
+            responsive: true,
         }
     });
 }
