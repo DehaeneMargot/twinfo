@@ -832,7 +832,7 @@ input::placeholder {
 /*
     Component: Button
     ---
-    Searchbar
+    Button
 */
 .has-search-bar .c-button-container {
   transform: translateX(0%);
