@@ -228,13 +228,19 @@ const drawChartCategories = function (labels, data) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Categories',
                 data: data,
                 backgroundColor:'rgb(162, 0, 255)'
             }]
         },
         options: {
+            title: {
+                display: true,
+                text: "Trending categories",
+                fontSize: 14,
+                padding: 20
+            },
             legend: {
+                display: false,
                 scales: {
                     yAxes: [{
                         stacked: false,

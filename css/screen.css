@@ -69,7 +69,7 @@
   /* forms */
   --global-placeholder-color: var(--color-neutral-x-light);
   --global-landingCard-color: var(--color-neutral-xxxx-light-transparent);
-  --global-input-backgroundColor: White;
+  --global-input-backgroundColor: var(--color-neutral-xxxx-light);
   --global-input-color: var(--color-neutral-xxxx-dark);
   --global-input-borderColor: var(--color-neutral-xxx-light);
   --global-input-hover-borderColor: var(--color-neutral-xx-light);
@@ -105,7 +105,7 @@ html {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --global-page-color: White;
+    --global-page-color: var(--color-neutral-xxxx-light);
     --global-page-backgroundColor: var(--color-neutral-xxxx-dark);
   }
 
@@ -116,9 +116,10 @@ html {
 }
 
 .c-dark {
-  --global-page-color: White;
+  --global-page-color: var(--color-neutral-xxxx-light);
   --global-page-background-color: var(--color-neutral-xxxx-dark);
   --global-page-header-color: var(--color-neutral-xx-dark);
+  --global-input-backgroundColor: var(--color-neutral-xxx-dark);
   --global-nav-icon-color: var(--color-neutral-xxxx-light);
   --global-page-card-color: var(--color-neutral-xxx-dark);
   --global-h1-h4-h5-color: var(--color-neutral-xxxx-light);
@@ -522,7 +523,7 @@ input::placeholder {
   width: 100%;
   border: 1px solid var(--global-input-borderColor);
   border-radius: var(--global-borderRadius);
-  background-color: var(--color-neutral-xxxx-light);
+  background-color: var(--global-input-backgroundColor);
   color: var(--global-input-color);
   font-family: inherit;
   font-size: 16px;
@@ -530,6 +531,7 @@ input::placeholder {
   padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-sm);
   outline: none;
   transition: border var(--global-transition-timing-alpha), box-shadow var(--global-transition-timing-alpha);
+  box-shadow: 0 2px 6px -6px var(--color-neutral-xxxx-dark);
 }
 
 .c-input:hover {
@@ -834,23 +836,22 @@ input::placeholder {
 }
 
 /*
-    Component: Searchbar
+    Component: Button
     ---
     Searchbar
 */
-.has-search-bar .c-search {
+.has-search-bar .c-button-container {
   transform: translateX(0%);
   margin-bottom: 20px;
 }
 
-.c-search-landing {
+.c-button-landing {
   width: 100%;
   margin-top: 1.5em;
-  height: 48px;
   font-weight: 600;
 }
 
-.c-search {
+.c-button-container {
   display: grid;
   grid-gap: 0.5rem;
   grid-template-columns: 67.5% 20% 7.5%;
@@ -860,20 +861,7 @@ input::placeholder {
   align-items: center;
 }
 
-/* Style the search field */
-.c-searchbar {
-  padding: 10px;
-  font-size: 14px;
-  float: left;
-  background: var(--global-searchbar-color);
-  border: 1px solid var(--color-neutral-light);
-  border-radius: 4px;
-  box-shadow: 0 2px 6px -6px var(--color-neutral-xxxx-dark);
-}
-
-
-/* Style the submit button */
-.c-searchbutton {
+.c-button {
   box-sizing: border-box;
   float: left;
   padding: 10px;
@@ -886,21 +874,22 @@ input::placeholder {
   border-radius: 4px;
   box-shadow: 0 2px 6px -6px var(--color-neutral-xxxx-dark);
   outline: none;
+  height: 48px;
 }
 
-.c-searchbutton:hover {
+.c-button:hover {
   background: var(--color-purple-xx-light);
 }
 
-.c-searchbutton:active,
-.c-searchbutton:focus {
+.c-button:active,
+.c-button:focus {
   background: var(--color-alpha);
   border-color: var(--global-input-focus-borderColor);
   box-shadow: var(--global-input-focus-boxShadow);
 }
 
 @media (min-width: 992px) {
-  .c-search {
+  .c-button-container {
     grid-template-columns: auto 100px 24px;
   }
 }
