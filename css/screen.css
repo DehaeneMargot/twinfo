@@ -260,7 +260,7 @@ dl,
 table,
 address,
 figure {
-  margin: 0 0 var(--global-whitespace-md);
+  margin: 0 0 var(--global-whitespace-xs);
 }
 
 ul,
