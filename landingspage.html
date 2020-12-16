@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Twitch statistics. View the most trending categories and channels here."> <!-- Your description here -->
+    <meta name="description" content="Twitch statistics. View the most trending categories and channels here.">
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/typography.css">
-    <link rel="stylesheet" href="css/screen.css"> <!-- Your CSS File (See 'styles/') -->
+    <link rel="stylesheet" href="css/screen.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
 
     <title>TWINFO</title>
 
@@ -19,8 +21,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Your JavaScript -->
-    <script src="js/script.js"></script>
+    <script src="js/validation.js"></script>
 </head>
 <body class="c-background">
     <div class="o-container-landing">
@@ -41,12 +42,15 @@
                             <p>Get notified for the newsletter or the release by filling in your E-mail below
                             </p>
                         </div>
-                        <div class="c-form__field">
-                            <label class="c-label" for="username">
-                                Email
+                        <div class="c-form__field js-email-field">
+                            <label class="c-label js-email-label" for="username">
+                                Email address
+                                <span class="c-label__error-message js-email-error-message">
+                                    This field is required
+                                </span>
                             </label>
-                            <input class="c-input" placeholder="e.g. john@doe.com" type="email" name="email" id="email" required>
-                            <button class="c-button-landing c-button">Notify me</button>
+                            <input class="c-input js-email-input" placeholder="e.g. john@doe.com" type="email" name="email" id="email" required>
+                            <button class="c-button-landing c-button js-sign-in-button">Notify me</button>
                         </div>
                     </div>
                 </div>

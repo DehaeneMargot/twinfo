@@ -32,6 +32,10 @@
   --color-purple-x-dark: #580488;
   --color-purple-xx-dark: #350053;
 
+  --global-color-error: #FF3333;
+  --global-color-error-transparent: #FF3333bf;
+  --global-color-error-x-transparent: #FF33334d;
+
   --element-gap: 2rem;
 
   /* Shadows */
@@ -63,6 +67,7 @@
   --global-searchbar-color: var(--color-neutral-xxxx-light);
 
   /* forms */
+  --global-label-color: var(--color-purple-dark);
   --global-placeholder-color: var(--color-neutral-x-light);
   --global-landingCard-color: var(--color-neutral-xxxx-light-transparent);
   --global-input-backgroundColor: var(--color-neutral-xxxx-light);
@@ -72,6 +77,11 @@
   --global-input-focus-borderColor: var(--color-alpha);
   --global-input-focus-boxShadowColor: var(--color-alpha-transparent);
   --global-input-focus-boxShadow: 0 0 0 3px var(--global-input-focus-boxShadowColor);
+
+  /* error */
+  --global-input-error-borderColor: var(--global-color-error);
+  --global-input-error-boxShadowColor: var( --global-color-error-x-transparent);
+
 }
 
 /*------------------------------------*\
@@ -182,6 +192,7 @@ h1 {
   line-height: calc(var(--global-baseline) * 4);
   margin: 0 0 var(--global-whitespace-sm);
   color: var(--global-h1-h4-h5-color);
+  font-weight: 600;
 }
 
 h2 {
@@ -189,6 +200,7 @@ h2 {
   line-height: calc(var(--global-baseline) * 5);
   margin: 0 0 var(--global-whitespace-sm);
   color: var(--global-h2-color);
+  font-weight: 600;
 }
 
 h3 {
@@ -196,6 +208,7 @@ h3 {
   line-height: calc(var(--global-baseline) * 4);
   margin: 0 0 var(--global-whitespace-sm);
   color: var(--global-h3-color);
+  font-weight: 600;
 }
 
 h4 {
@@ -546,18 +559,26 @@ input::placeholder {
 */
 
 .c-label {
-  --label-color: var(--color-purple-dark);
   margin-bottom: 0;
   padding-bottom: var(--global-whitespace-xxs);
   font-size: 1rem;
   line-height: 1.14rem;
-  color: var(--label-color);
+  color: var(--global-label-color);
 }
 
 .c-label--option {
   padding-bottom: 0;
 }
 
+.c-label__error-message {
+  font-weight: 600;
+  float: right;
+  display: none;
+}
+
+.c-label__error-message.is-visible {
+	display: block;
+}
 
 /*
     Component: Landingspage background
@@ -906,6 +927,18 @@ input::placeholder {
     width: 55%;
     margin: 0 auto;
   }
+}
+
+/*------------------------------------*\
+#States
+\*------------------------------------*/
+
+.has-error {
+  --global-label-color: var(--global-color-error);
+  --global-input-borderColor: var(--global-input-error-borderColor);
+  --global-input-hover-borderColor: var(--global-input-error-borderColor);
+  --global-input-focus-borderColor: var(--global-input-error-borderColor);
+  --global-input-focus-boxShadow: 0 0 0 3px var(--global-input-error-boxShadowColor);
 }
 
 /*------------------------------------*\
