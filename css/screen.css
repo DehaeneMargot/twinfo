@@ -76,8 +76,11 @@
   --global-input-hover-borderColor: var(--color-neutral-xx-light);
   --global-input-focus-borderColor: var(--color-alpha);
   --global-input-focus-boxShadowColor: var(--color-alpha-transparent);
+  --global-button-focus-borderColor: var(--color-alpha);
+  --global-button-focus-boxShadowColor: var(--color-alpha-transparent);
   --global-input-focus-boxShadow: 0 0 0 3px var(--global-input-focus-boxShadowColor);
-
+  --global-button-focus-boxShadow: 0 0 0 3px var(--global-button-focus-boxShadowColor);
+  
   /* error */
   --global-input-error-borderColor: var(--global-color-error);
   --global-input-error-boxShadowColor: var( --global-color-error-x-transparent);
@@ -899,8 +902,8 @@ input::placeholder {
 .c-button:active,
 .c-button:focus {
   background: var(--color-alpha);
-  border-color: var(--global-input-focus-borderColor);
-  box-shadow: var(--global-input-focus-boxShadow);
+  border-color: var(--global-button-focus-borderColor);
+  box-shadow: var(--global-button-focus-boxShadow);
 }
 
 @media (min-width: 70.86rem) {
