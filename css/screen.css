@@ -38,8 +38,6 @@
 
   --element-gap: 2rem;
 
-  /* Shadows */
-
   /* Whitespace */
   --global-baseline: 8px;
   --global-whitespace-xxs: var(--global-baseline);
@@ -467,123 +465,6 @@ input::placeholder {
 \*------------------------------------*/
 
 /*
-    Component: Forms
-    ---
-    Forms
-*/
-
-.c-card-form {
-  background-color: var(--global-landingCard-color);
-  border-radius: 6px;
-  margin: 0;
-  height: fit-content;
-  padding: 1.14rem;
-}
-
-.c-form {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-gap: 2rem;
-  grid-template-rows: 15vh 0.5fr 0.75fr
-}
-
-.c-form__logo {
-  width: 40%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-}
-
-@media (min-width: 54.86rem) {
-  .c-form__logo {
-    height: 100%;
-  }
-}
-
-@media (min-width: 88.57rem) {
-  .c-card-form {
-    margin: 0 100px;
-    padding: 0rem 2.29rem;
-  }
-
-  .c-form {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-gap: 2rem;
-    grid-template-rows: 15vh 1fr 1fr
-  }
-}
-
-.c-form__text {
-  font-size: 1.5rem;
-  color: var(--color-neutral-xxxx-dark);
-}
-
-/*
-    Component: Input
-    ---
-    Class to put on all input="text" like form inputs
-*/
-
-.c-input {       
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 100%;
-  border: 1px solid var(--global-input-borderColor);
-  border-radius: var(--global-borderRadius);
-  background-color: var(--global-input-backgroundColor);
-  color: var(--global-input-color);
-  font-family: inherit;
-  font-size: 1.14rem;
-  line-height: calc(var(--global-baseline) * 3);
-  padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-sm);
-  outline: none;
-  transition: border var(--global-transition-timing-alpha), box-shadow var(--global-transition-timing-alpha);
-  box-shadow: 0 2px 6px -6px var(--color-neutral-xxxx-dark);
-}
-
-.c-input:hover {
-  border-color: var(--global-input-hover-borderColor);
-}
-
-.c-input:focus,
-.c-input:active {
-  border-color: var(--global-input-focus-borderColor);
-  box-shadow: var(--global-input-focus-boxShadow);
-}
-
-/*
-    Component: Label
-    ---
-    Class to put on all form labels
-*/
-
-.c-label {
-  margin-bottom: 0;
-  padding-bottom: var(--global-whitespace-xxs);
-  font-size: 1rem;
-  line-height: 1.14rem;
-  color: var(--global-label-color);
-}
-
-.c-label--option {
-  padding-bottom: 0;
-}
-
-.c-label__error-message {
-  font-weight: 600;
-  float: right;
-  display: none;
-}
-
-.c-label__error-message.is-visible {
-	display: block;
-}
-
-/*
     Component: Landingspage background
     ---
     Background
@@ -910,6 +791,124 @@ input::placeholder {
   .c-button-container {
     grid-template-columns: auto 7.14rem 1.71rem;
   }
+}
+
+/*
+    Component: Forms
+    ---
+    Forms
+*/
+
+.c-card-form {
+  background-color: var(--global-landingCard-color);
+  border-radius: 6px;
+  margin: 0;
+  height: fit-content;
+  padding: 1.14rem;
+}
+
+.c-form {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-gap: 2rem;
+  grid-template-rows: 15vh 0.5fr 0.75fr
+}
+
+.c-form__logo {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.c-form__text {
+  font-size: 1.5rem;
+  color: var(--color-neutral-xxxx-dark);
+}
+
+@media (min-width: 54.86rem) {
+  .c-form__logo {
+    height: 100%;
+  }
+}
+
+@media (min-width: 88.57rem) {
+  .c-card-form {
+    margin: 0 100px;
+    padding: 0rem 2.29rem;
+  }
+
+  .c-form {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 2rem;
+    grid-template-rows: 15vh 1fr 1fr
+  }
+}
+
+
+/*
+    Component: Input
+    ---
+    Class to put on all inputs
+*/
+
+.c-input {       
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  border: 1px solid var(--global-input-borderColor);
+  border-radius: var(--global-borderRadius);
+  background-color: var(--global-input-backgroundColor);
+  color: var(--global-input-color);
+  font-family: inherit;
+  font-size: 1.14rem;
+  line-height: calc(var(--global-baseline) * 3);
+  padding: calc(var(--global-baseline) * 1.5 - var(--global-borderWidth)) var(--global-whitespace-sm);
+  outline: none;
+  transition: border var(--global-transition-timing-alpha), box-shadow var(--global-transition-timing-alpha);
+  box-shadow: 0 2px 6px -6px var(--color-neutral-xxxx-dark);
+}
+
+.c-input:hover {
+  border-color: var(--global-input-hover-borderColor);
+}
+
+.c-input:focus,
+.c-input:active {
+  border-color: var(--global-input-focus-borderColor);
+  box-shadow: var(--global-input-focus-boxShadow);
+}
+
+/*
+    Component: Label
+    ---
+    Class to put on all form labels
+*/
+
+.c-label {
+  margin-bottom: 0;
+  padding-bottom: var(--global-whitespace-xxs);
+  font-size: 1rem;
+  line-height: 1.14rem;
+  color: var(--global-label-color);
+}
+
+.c-label--option {
+  padding-bottom: 0;
+}
+
+.c-label__error-message {
+  font-weight: 600;
+  float: right;
+  display: none;
+}
+
+.c-label__error-message.is-visible {
+	display: block;
 }
 
 /*
