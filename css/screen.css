@@ -246,7 +246,7 @@ h6 {
   }
   h2 {
     font-size: 2.57rem;
-    margin: 0 0 var(--global-whitespace-lg)
+    margin: 0 0 var(--global-whitespace-sm)
   }
   h5,
   h6 {
@@ -473,7 +473,7 @@ input::placeholder {
 .c-background {
   background-size: cover;
   height: 100vh;
-  background-image: url("../img/jpg/streamerMe.JPG");
+  background-image: url("../img/jpg/streamerMe.jpg");
   resize: none;
 }
 
@@ -826,6 +826,11 @@ input::placeholder {
 .c-form__text {
   font-size: 1.5rem;
   color: var(--color-neutral-xxxx-dark);
+}
+
+.c-form__text-purple {
+  color: var(--color-purple-dark);
+  font-weight: 600;
 }
 
 @media (min-width: 54.86rem) {
