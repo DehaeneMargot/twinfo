@@ -592,7 +592,7 @@ input::placeholder {
 .c-background {
   background-size: cover;
   height: 100vh;
-  background-image: url("../img/jpg/streamer.jpg");
+  background-image: url("../img/jpg/streamerMe.JPG");
   resize: none;
 }
 
